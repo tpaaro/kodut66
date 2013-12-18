@@ -13,7 +13,7 @@ public class Mängija {
 	/**
 	 * Mängija käes olevad kaardid, kuni 10 kaarti.
 	 */
-	int maxKaarte = 10;
+	private int maxKaarte = 10;
 	private Kaart[] käsi = new Kaart[maxKaarte];
 
 	/**
@@ -55,14 +55,14 @@ public class Mängija {
 	 */
 	public boolean lisaKaart(Kaart kaart) {
 
-		// prinditakse error kui mängija käes on maksimaalne arv kaarte
+		// prinditakse error kui mängija saavutab maksimaalse võimaliku arv kaarte käes
 		if (this.nrKaarte == maxKaarte) {
 			System.err.printf("%s maksimaalne arv kaarte on saavutatud. "
 					+ "Ei saa enam kaarte juurde lisada.\n ", this.nimi);
 			System.exit(1);
 		}
 
-		// lisame uue kaardi järgmisesse kohta ja suurendame kaartide arvu
+		// lisame uue kaardi järgmisesse vabasse kohta, suurendame kaartide arvu
 		this.käsi[this.nrKaarte] = kaart;
 		this.nrKaarte++;
 
@@ -92,7 +92,7 @@ public class Mängija {
 			} else if (kaardiNr >= 10) { // Poiss, emand, kuningas
 				käeSumma += 10;
 			} else {
-				käeSumma += kaardiNr + 1;
+				käeSumma += kaardiNr+1;
 			}
 		}
 		// kui meil ässad ja summa on > 21, muudame mõne/kõigi ässa(de)

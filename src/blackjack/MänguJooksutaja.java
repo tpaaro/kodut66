@@ -7,7 +7,10 @@ public class MänguJooksutaja {
 	public static void main(String[] args) {
 
 		boolean kestvus = true;
-		int krediit = 100;
+		// int krediit = 100;
+		int kordadeArv = 0;
+		int mängeVõidetud = 0;
+		int mängeKaotatud = 0;
 
 		while (kestvus) {
 			// algväärtustame
@@ -24,23 +27,23 @@ public class MänguJooksutaja {
 			diiler.lisaKaart(pakk.jagaJärgKaart());
 
 			// prindime algsed käed
+			System.out.printf("%d)********************\n", kordadeArv + 1);
 			System.out.println("Kaardid on jagatud\n");
 			mina.prindiKäsi(true);
 			diiler.prindiKäsi(false);
 			System.out.println("\n");
 
-			// panuste asetamine
-			System.out.println("Krediiti: " + krediit);
-			System.out.println("Asetage panus: ");
-			int panus = Integer.parseInt(skänner.next());
-
-			// kui panus ületab krediidisummat, siis määrame panuseks mängija
-			// kogu krediidi
-			if (panus > krediit) {
-				panus = krediit;
-				System.out.println("Panus = " + krediit);
-
-			}
+			/*
+			 * // panuste asetamine System.out.println("Krediiti: " + krediit);
+			 * System.out.println("Asetage panus: "); int panus =
+			 * Integer.parseInt(skänner.next());
+			 * 
+			 * // kui panus ületab krediidisummat, siis määrame panuseks mängija
+			 * // kogu krediidi if (panus > krediit) { panus = krediit;
+			 * System.out.println("Panus = " + krediit);
+			 * 
+			 * }
+			 */
 
 			// näitame, kas osalejad on lõpetanud kaartide lisamise
 			boolean minaLõp = false;
@@ -96,31 +99,43 @@ public class MänguJooksutaja {
 			System.out.println();
 
 			// otsustame kumb käsi võitis
-			if (minuSum > diilerSum && minuSum <= 21 || diilerSum > 21) {
+			if (minuSum > diilerSum && minuSum <= 21) {
 				System.out.println("Sinu võit! :)");
-				krediit += panus;
+				// krediit += panus;
+				kordadeArv++;
+				mängeVõidetud++;
 				System.out.println();
-			
 
 			} else {
 				System.out.println("Diileri võit! :(");
-				krediit -= panus;
+				// krediit -= panus;
+				kordadeArv++;
+				mängeKaotatud++;
 				System.out.println();
-
 			}
 
+			// mängukordade limiteerimine
+			if (kordadeArv == 5) {
+				System.out
+						.println("-------------------------------------------");
+				System.out.printf(
+						"Sa võitsid %d mängu %d-st. Tänan mängimast!",
+						mängeVõidetud, kordadeArv);
+				break;
+			}
 			// Kui krediiti enam pole või soovitakse katkestada, lõptame mängu.
-			System.out.println("Kas soovid mangu jatkata? Jah(1) Ei (0)");
-			
-			if (skänner.next().equalsIgnoreCase("1")) {
-				kestvus = false;
-				System.out.println("Nägemist!");
-
-			} else if (krediit == 0) {
-				kestvus = false;
-				System.out.println("Krediit on otsas. Järgmise korrani!");
-
-			}
+			/*
+			 * System.out.println("Kas soovid mangu jatkata? Jah(1) Ei (0)");
+			 * 
+			 * if (skänner.next().equalsIgnoreCase("0")) { kestvus = false;
+			 * System.out.println("Nägemist!");
+			 * 
+			 * } else if (krediit == 0) { kestvus = false;
+			 * System.out.println("Krediit on kahjuks otsas. Järgmise korrani!"
+			 * );
+			 * 
+			 * }
+			 */
 		}
 	}
 }

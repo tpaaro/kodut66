@@ -12,7 +12,7 @@ public class Kaart {
 	private Mast minuMast;
 
 	/**
-	 * Kaardi numbri väärtused
+	 * Kaardinumbri väärtused
 	 */
 	private int kaardiNr;
 	ArrayList<String> kaardiVd = new ArrayList<String>();
