@@ -34,7 +34,8 @@ public class MänguJooksutaja {
 			System.out.println("\n");
 
 			/*
-			 * // panuste asetamine System.out.println("Krediiti: " + krediit);
+			 * // panuste asetamine 
+			 * System.out.println("Krediiti: " + krediit);
 			 * System.out.println("Asetage panus: "); int panus =
 			 * Integer.parseInt(skänner.next());
 			 * 
