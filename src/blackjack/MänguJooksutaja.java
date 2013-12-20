@@ -2,132 +2,134 @@ package blackjack;
 
 import java.util.Scanner;
 
-public class MänguJooksutaja {
+public class MÃ¤nguJooksutaja {
 
 	public static void main(String[] args) {
 
 		boolean kestvus = true;
-		int mängeVõidetud = 0;
+		int mÃ¤ngeVÃµidetud = 0;
 		int kordadeArv = 0;
 		int krediit = 100;
 
 		while (kestvus) {
-			// algväärtustame
-			Scanner skänner = new Scanner(System.in);
+			// initsialiseerime
+			Scanner skÃ¤nner = new Scanner(System.in);
 			Pakk pakk = new Pakk(1, true);
 
-			// aögväärtustame mängija objektid
-			Mängija mina = new Mängija("Mängija, Tanel, ");
-			Mängija diiler = new Mängija("Diileri");
+			// initsialiseerime mÃ¤ngija objektid
+			MÃ¤ngija mina = new MÃ¤ngija("MÃ¤ngija, Tanel, ");
+			MÃ¤ngija diiler = new MÃ¤ngija("Diileri");
 
-			mina.lisaKaart(pakk.jagaJärgKaart());
-			diiler.lisaKaart(pakk.jagaJärgKaart());
-			mina.lisaKaart(pakk.jagaJärgKaart());
-			diiler.lisaKaart(pakk.jagaJärgKaart());
+			mina.lisaKaart(pakk.jagaJÃ¤rgKaart());
+			diiler.lisaKaart(pakk.jagaJÃ¤rgKaart());
+			mina.lisaKaart(pakk.jagaJÃ¤rgKaart());
+			diiler.lisaKaart(pakk.jagaJÃ¤rgKaart());
 
-			// prindime algsed käed
+			// prindime algsed kï¿½ed
 			System.out.println("Kaardid on jagatud\n");
-			mina.prindiKäsi(true);
-			diiler.prindiKäsi(false);
+			mina.prindiKÃ¤si(true);
+			diiler.prindiKÃ¤si(false);
 			System.out.println("\n");
 
 			// panuste asetamine System.out.println("Krediiti: " + krediit);
 			System.out.println("Krediiti: " + krediit);
-			System.out.println("Asetage panus: ");
-			int panus = Integer.parseInt(skänner.next());
+			System.out.print("Asetage panus: ");
+			int panus = Integer.parseInt(skÃ¤nner.next());
 
-			// kui panus ületab krediidisummat, siis määrame panuseks mängija
+			// kui panus ï¿½letab krediidisummat, siis mï¿½ï¿½rame panuseks mï¿½ngija
 			// kogu krediidi
 			if (panus > krediit) {
 				panus = krediit;
 				System.out.println("Panus = " + krediit);
 			}
 
-			// näitame, kas osalejad on lõpetanud kaartide lisamise
-			boolean minaLõp = false;
-			boolean diilerLõp = false;
+			// nï¿½itame, kas osalejad on lï¿½petanud kaartide lisamise
+			boolean minaLÃµp = false;
+			boolean diilerLÃµp = false;
 			String vastus;
 
-			while (!minaLõp || !diilerLõp) {
+			while (!minaLÃµp || !diilerLÃµp) {
 
-				// mängija kord
-				if (!minaLõp) {
-					System.out.print("Hit või Stay(Sisesta H või S ): ");
-					vastus = skänner.next();
+				// mï¿½ngija kord
+				if (!minaLÃµp) {
+					System.out.print("Hit vÃµi Stay(Sisesta H vÃµi S ): ");
+					vastus = skÃ¤nner.next();
 					System.out.println();
 
-					// kui mängija otsustab lisada
+					// kui mï¿½ngija otsustab lisada
 					if (vastus.compareToIgnoreCase("H") == 0) {
 
-						// lisame järgmise kaardi pakist ning kontrollime ega
-						// mängija lõhki ole läinud
-						minaLõp = !mina.lisaKaart(pakk.jagaJärgKaart());
-						mina.prindiKäsi(true);
+						// lisame jï¿½rgmise kaardi pakist ning kontrollime ega
+						// mï¿½ngija lï¿½hki ole lï¿½inud
+						minaLÃµp = !mina.lisaKaart(pakk.jagaJÃ¤rgKaart());
+						mina.prindiKÃ¤si(true);
 					} else {
-						minaLõp = true;
+						minaLÃµp = true;
 
 					}
 				}
 
 				// diileri kord
-				if (!diilerLõp) {
-					if (diiler.käeSumma() < 17) {
+				if (!diilerLÃµp) {
+					if (diiler.kÃ¤eSumma() < 17) {
 						System.out.println("Diiler lisab\n");
-						diilerLõp = !diiler.lisaKaart(pakk.jagaJärgKaart());
-						diiler.prindiKäsi(false);
+						diilerLÃµp = !diiler.lisaKaart(pakk.jagaJÃ¤rgKaart());
+						diiler.prindiKÃ¤si(false);
 					} else {
-						System.out.println("Diiler lõpetab lisamise\n");
-						diilerLõp = true;
+						System.out.println("Diiler lÃµpetab lisamise\n");
+						diilerLÃµp = true;
 					}
 
 				}
 				System.out.println();
 			}
 
-			// prindime lõplikud käed
-			mina.prindiKäsi(true);
-			diiler.prindiKäsi(true);
+			// prindime lï¿½plikud kï¿½ed
+			mina.prindiKÃ¤si(true);
+			diiler.prindiKÃ¤si(true);
 
-			int minuSum = mina.käeSumma();
-			int diilerSum = diiler.käeSumma();
+			int minuSum = mina.kÃ¤eSumma();
+			int diilerSum = diiler.kÃ¤eSumma();
 
-			// prindime käte summad
-			System.out.println("Mängija, Tanel, summa: " + minuSum);
+			// prindime kï¿½te summad
+			System.out.println("MÃ¤ngija, Tanel, summa: " + minuSum);
 			System.out.println("Diileri summa: " + diilerSum);
 			System.out.println();
 
-			// otsustame kumb käsi võitis
-			if (minuSum > diilerSum && minuSum <= 21 || diilerSum > 21) {
-				System.out.println("Sinu võit! :)");
-				krediit += panus;
-				kordadeArv++;
-				mängeVõidetud++;
-				System.out.println();
-
-			} else {
-				System.out.println("Diileri võit! :(");
+			// otsustame kumb kï¿½si vï¿½itis
+			if(minuSum <= diilerSum || minuSum > 21) {
+				System.out.println("Diileri vÃµit! :(");
 				krediit -= panus;
 				kordadeArv++;
 				System.out.println();
+				
+			} else {
+				System.out.println("Sinu vÃµit! :)");
+				krediit += panus;
+				kordadeArv++;
+				mÃ¤ngeVÃµidetud++;
+				System.out.println();
 			}
 
-			// Kui krediiti enam pole või soovitakse katkestada, lõptame mängu.
-			System.out.println("Kas soovid mangu jatkata? Jah(1) Ei (0)");
+			// Kui krediiti enam pole vï¿½i soovitakse katkestada, lï¿½ptame mï¿½ngu.
+			System.out.println("Kas soovid mangu jÃ¤tkata? Jah(1) Ei (0)");
 
-			if (skänner.next().equalsIgnoreCase("0")) {
+			if (skÃ¤nner.next().equalsIgnoreCase("0")) {
 				kestvus = false;
-				System.out.println("Nägemist!");
-				System.out.println("Sa võitsid " + mängeVõidetud + "/"
-						+ kordadeArv);
+				System.out.println("NÃ¤gemist!");
+				// System.out.println("Sa vÃµitsid " + mÃ¤ngeVÃµidetud + "/"
+				// + kordadeArv);
 
 			} else if (krediit == 0) {
 				kestvus = false;
 				System.out
-						.println("Krediit on kahjuks otsas. Järgmise korrani!");
-				System.out.println("Sa võitsid " + mängeVõidetud + "/"
-						+ kordadeArv);
+						.println("Krediit on kahjuks otsas. JÃ¤rgmise korrani!");
+				// System.out.println("Sa vÃµitsid " + mÃ¤ngeVÃµidetud + "/"
+				// + kordadeArv);
 			}
 
 		}
+		System.out.println("Sa vÃµitsid " + mÃ¤ngeVÃµidetud + "/" + kordadeArv);
 	}
-}
+	}
+	
