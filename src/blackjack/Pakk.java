@@ -23,16 +23,16 @@ public class Pakk {
 	
 	public Pakk(){
 		
-		//kutsub välja teise konstruktori, määratleb ära segamata paki.
+		//kutsub vÃ¤lja teise konstruktori, mÃ¤Ã¤ratleb Ã¤ra segamata paki.
 		this(1, false);
 	}
 	
 	/**
 	 * Pakkide koguarvu konstruktor (s.t. kui palju 52 kaardilisi pakke on laual)
-	 * ja otsustatakse, kas soovitakse pakki segada või mitte.
+	 * ja otsustatakse, kas soovitakse pakki segada vï¿½i mitte.
 	 * 
 	 * @param pakkideArv	52-kaardiliste pakkide arv laual
-	 * @param segada		kas segada kaarte või mitte.
+	 * @param segada		kas segada kaarte vï¿½i mitte.
 	 */
 	
 	public Pakk( int pakkideArv, boolean segada) {
@@ -42,7 +42,7 @@ public class Pakk {
 		this.nrKaarte = pakkideArv * 52;
 		this.minuKaardid = new Kaart[this.nrKaarte];
 		
-		// kaardi lähteindeks
+		// kaardi lï¿½hteindeks
 		int k = 0;
 		// iga paki jaoks
 		for (int p = 0; p < pakkideArv; p++) {
@@ -79,7 +79,7 @@ public class Pakk {
 	int j;
 	for (int i = 0; i < this.nrKaarte; i++){
 		
-		// suvalise kaardi j kokkupanemine suvalise väärtuse i-ga
+		// suvalise kaardi saamine
 		j = sng.nextInt(this.nrKaarte);
 		
 		//vahetus ajutise kaardiga
@@ -90,16 +90,16 @@ public class Pakk {
 	}
 }
 /**
- * Jagame kaardipaki pealmisele kaardile järgneva kaardi
+ * Jagame kaardipaki pealmisele kaardile jï¿½rgneva kaardi
  * 
  * @return jagatud kaart
  */
-public Kaart jagaJärgKaart(){
+public Kaart jagaJÃ¤rgKaart(){
 	
-	//võtab pealmise kaardi
-	Kaart ülemine = this.minuKaardid[0];
+	//vï¿½tab pealmise kaardi
+	Kaart Ã¼lemine = this.minuKaardid[0];
 	
-	//liigutab kõik järgnevad kaardid vasakule ühe indeksi võrra
+	//liigutab kï¿½ik jï¿½rgnevad kaardid vasakule ï¿½he indeksi vï¿½rra
 	for (int k = 1; k < this.nrKaarte; k++){
 		this.minuKaardid[k - 1] = this.minuKaardid[k];
 		
@@ -109,23 +109,17 @@ public Kaart jagaJärgKaart(){
 	//kaartide eemaldamine pakist
 	this.nrKaarte--;
 	
-	return ülemine;
+	return Ã¼lemine;
 }
 /**
  * Prindib paki pealmised kaardid.
  * 
- * @param printimisNumber arv, mis näitab, kui palju ülemisi
+ * @param printimisNumber arv, mis nï¿½itab, kui palju ï¿½lemisi
  * 						  kaarte on printida
  */
-public void prindiPakk(int kaartePrintida){
-	
-	for (int k = 0; k < kaartePrintida; k++) {
-		System.out.printf("% 3d/%d %s \n", k+1,this.nrKaarte, 
-				this.minuKaardid[k].toString());
-	}
-	System.out.printf("\t [%d jäänud]\n", this.nrKaarte-kaartePrintida);
-}
 
 }
+
+
 
 
